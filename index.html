@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="snap-manu-red-300-165" content="width=300,height=165" />
+		<script type="text/javascript">
+			var clickTag = "https://www.qualcomm.com/de/snapdragon#overview"
+		</script>
+
+		<style>
+			body,
+			html {
+				margin: 0;
+				padding: 0;
+			}
+			.sd-gaming-300-165 {
+				width: 300px;
+				height: 165px;
+				background-color: #000;
+				overflow: hidden;
+				position: relative;
+				display: flex;
+			}
+
+			.top-text {
+				position: absolute;
+				z-index: 20;
+				top: 17px;
+				left: -200px;
+			}
+
+			.bottom-text {
+				position: absolute;
+				z-index: 20;
+				bottom: 16px;
+				right: -200px;
+			}
+
+			.lock-up {
+				position: absolute;
+				z-index: 20;
+				right: 25px;
+			}
+
+			.mat {
+				width: 300px;
+				height: 165px;
+				position: absolute;
+				z-index: 10;
+				transform: scale(300%) translateX(-20px);
+				transform-origin: left center;
+			}
+			.image {
+				position: absolute;
+				z-index: 1;
+				transform: scale(150%) translate(25px, 10px);
+			}
+		</style>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+	</head>
+	<body>
+		<a
+			href="javascript:window.open(window.clickTag)"
+			class="sd-gaming-300-165"
+			width="300"
+			height="165"
+		>
+			<img class="top-text" src="assets/gaming-300-165-top-text.png" alt="" />
+			<img
+				class="bottom-text"
+				src="assets/gaming-300-165-bottom-text.png"
+				alt=""
+			/>
+			<img class="lock-up" src="assets/gaming-300-165-lock-up.png" alt="" />
+			<img class="mat" src="assets/gaming-300-165-mat.png" alt="" />
+			<img class="image" src="assets/gaming-300-165-image.jpg" alt="" />
+		</a>
+	</body>
+	<script>
+		const sdGaming300x165Animate = () => {
+			const mat = document.querySelector(".sd-gaming-300-165 .mat")
+			const image = document.querySelector(".sd-gaming-300-165 .image")
+			const topText = document.querySelector(".sd-gaming-300-165 .top-text")
+			const bottomText = document.querySelector(
+				".sd-gaming-300-165 .bottom-text"
+			)
+			const lockUp = document.querySelector(".sd-gaming-300-165 .lock-up")
+
+			const tl = gsap.timeline()
+
+			tl.set(mat, { scaleX: "300%", scaleY: "300%" })
+				.set(topText, { x: -200 })
+				.set(bottomText, { x: 200 })
+				.set(lockUp, { y: 200 })
+				.set(image, { scaleX: "150%", scaleY: "150%" })
+
+				.to(mat, {
+					x: 0,
+					y: 0,
+					scaleX: "100%",
+					scaleY: "100%",
+					duration: 1.5,
+					ease: "power4.in",
+				})
+				.fromTo(
+					image,
+					{ scaleX: "150%", scaleY: "150%" },
+					{
+						scaleX: "100%",
+						scaleY: "100%",
+						x: 0,
+						y: 0,
+						duration: 1,
+						ease: "power1.in",
+					},
+					"<.75"
+				)
+				.to(topText, { x: 207, duration: 1, ease: "power1.out" }, "-=1")
+				.to(bottomText, { x: -327, duration: 1, ease: "power1.inOut" }, "<.125")
+				.to(lockUp, { y: 50, duration: 0.5, ease: "power1.out" }, "-=.25")
+		}
+		sdGaming300x165Animate()
+	</script>
+</html>
